@@ -1,0 +1,6 @@
+{
+    "Debug": true,
+    "SlackTeam": "your-team-name",
+    "SlackToken": "outgoing-webhook-token",
+    "WebAddress": "localhost:8080"
+}
