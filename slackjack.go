@@ -5,25 +5,25 @@ import (
 	"flag"
 	"fmt"
 	"log"
-	"os"
 	"net/http"
+	"os"
 	"strings"
 )
 
 var Config struct {
-	Debug        bool
-	SlackToken  string
-	SlackTeam     string
-	WebAddress   string
+	Debug      bool
+	SlackToken string
+	SlackTeam  string
+	WebAddress string
 }
 
 type SlackMessage struct {
 	ChannelName string
-	UserName string
-	UserId string
-	Text string
-	Trigger string
-	Timestamp string
+	UserName    string
+	UserId      string
+	Text        string
+	Trigger     string
+	Timestamp   string
 }
 
 type SlackResponse struct {
@@ -60,18 +60,18 @@ func main() {
 		return
 	}
 
-	http.HandleFunc("/jack/", func (w http.ResponseWriter, req *http.Request) {
+	http.HandleFunc("/jack/", func(w http.ResponseWriter, req *http.Request) {
 		trigger := req.PostFormValue("trigger_word")
 		fullText := req.PostFormValue("text")
 		text := strings.TrimSpace(strings.TrimPrefix(fullText, trigger))
 
 		msg := &SlackMessage{
 			ChannelName: req.PostFormValue("channel_name"),
-			UserName: req.PostFormValue("user_name"),
-			UserId: req.PostFormValue("user_id"),
-			Timestamp: req.PostFormValue("timestamp"),
-			Trigger: trigger,
-			Text: text,
+			UserName:    req.PostFormValue("user_name"),
+			UserId:      req.PostFormValue("user_id"),
+			Timestamp:   req.PostFormValue("timestamp"),
+			Trigger:     trigger,
+			Text:        text,
 		}
 
 		ret, err := JackRespond(msg)

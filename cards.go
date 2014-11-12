@@ -52,7 +52,7 @@ func (v CardValue) String() string {
 }
 
 type Card struct {
-	Suit CardSuit
+	Suit  CardSuit
 	Value CardValue
 }
 
@@ -83,7 +83,7 @@ func Deal() (card Card, reshuffled bool) {
 
 	i := rand.Intn(len(Shoe))
 	card = Shoe[i]
-	lastIndex := len(Shoe)-1
+	lastIndex := len(Shoe) - 1
 	Shoe[i] = Shoe[lastIndex]
 	Shoe = Shoe[:len(Shoe)-1]
 
