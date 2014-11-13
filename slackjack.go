@@ -30,16 +30,23 @@ type SlackResponse struct {
 	Text string `json:"text"`
 }
 
-func JackRespond(msg *SlackMessage) (string, error) {
-
+func JackRespond(msg *SlackMessage) (text string, err error) {
 	switch strings.ToLower(msg.Text) {
-	case "hit me":
-		return JackHit(msg)
 	case "deal":
-		return JackDeal(msg)
+		text, err = JackDeal(msg)
+	case "hit me":
+		text, err = JackHit(msg)
+	case "stand":
+		text, err = JackStand(msg)
+	default:
+		text = fmt.Sprintf("Not sure what you mean by “%s”, friend.", msg.Text)
 	}
 
-	return fmt.Sprintf("Not sure what you mean by “%s”, friend.", msg.Text), nil
+	if err == nil {
+		text = fmt.Sprintf("%s: %s", msg.UserName, text)
+	}
+
+	return
 }
 
 func main() {
