@@ -47,7 +47,7 @@ func (v CardValue) Value() int {
 }
 
 func (v CardValue) String() string {
-	values := []string{"", "A", "2", "3", "4", "5", "6", "7", "8", "9", "J", "Q", "K"}
+	values := []string{"", "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"}
 	return values[int(v)]
 }
 
